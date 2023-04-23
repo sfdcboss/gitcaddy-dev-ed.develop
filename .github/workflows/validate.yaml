@@ -33,8 +33,9 @@ jobs:
         run: |
           DEBUG=*
           node --trace-warnings
-          echo "${{ secrets.DEVHUB_SFDX_AUTH_URL }}" > ./authfile
+          echo "${{ secrets.SFDX_DEVHUB_AUTH_URL }}" > ./authfile
           sfdx auth:sfdxurl:store -f authfile -a devhub
+          sfdx force:org:list --verbose
         shell: bash
 
       - name: "Github Push"
